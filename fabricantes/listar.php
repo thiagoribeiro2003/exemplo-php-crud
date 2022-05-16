@@ -1,4 +1,7 @@
-<?php require_once "../src/conecta.php";?>
+<?php require_once "../src/funcoes-fabricantes.php";
+$listaDeFabricantes = lerFabricantes($conexao);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,7 +43,7 @@
     //var_dump($resultado); //teste
     //echo "</pre>";
 
-    foreach ($resultado as $fabricante){
+    foreach ($listaDeFabricantes as $fabricante){
     ?>
  
 <tr>
