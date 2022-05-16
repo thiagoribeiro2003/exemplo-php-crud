@@ -13,4 +13,9 @@ function lerFabricantes(PDO $conexao):array {
     }
     return $resultado;
 }
+
+// Inserir um fabricante
+function inserirFabricante(PDO $conexao, string $nome) {
+    
+}
 ?>
