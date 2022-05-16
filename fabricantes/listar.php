@@ -1,3 +1,16 @@
+<?php 
+/* SCRIPT DE CONEXÃO AO SERVIDOR BANCO DE DADOS */
+
+// Parâmetros
+$servidor = "localhost";
+$usuario = "root";
+$senha = "";
+$banco = "vendas";
+
+// Criando a conexão com o MySQL (API/Driver de conexão)
+$conexao  = new PDO("mysql:host=$servidor");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,7 +24,19 @@
         <h1>Fabricantes | SELECT</h1>
         <hr>
         <h2>Lendo e carregando todos os Fabricantes</h2>
-        
+
+        <table>
+            <caption>Lista de Fabricantes</caption>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+            </tr>
+            </thead>
+        </table>
+        <tbody>
+
+        </tbody>
     </div>
 </body>
 </html>
