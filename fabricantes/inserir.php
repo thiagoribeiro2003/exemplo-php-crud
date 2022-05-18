@@ -5,9 +5,13 @@ if(isset($_POST['inserir']) ){
 require_once "../src/funcoes-fabricantes.php";
 
 /* Capturando o que foi digitado no camop nome */ 
-$nome = $_POST['nome'];
+$nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
 
+/* Chamando a função e passando os dados de conexão e o nome digitado */
 inserirFabricante($conexao, $nome);
+
+// Redirecionamento
+header("location:listar.php");
 }
 ?>
 <!DOCTYPE html>
@@ -22,6 +26,7 @@ inserirFabricante($conexao, $nome);
     <div class="container">
         <h1>Fabricantes | INSERT</h1>
         <hr>
+
         <form action="" method="post">
             <p>
                 <label for="nome">Nome:</label>
@@ -30,9 +35,12 @@ inserirFabricante($conexao, $nome);
             <button type="submit" name="inserir">
                 Inserir fabricante
             </button>
-
-
         </form>
     </div>
+
+    <p><a href="inserir.php">Voltar para lista de fabricantes</a></p>
+
+        <p><a href="../index.php">Home</a></p>
+
 </body>
 </html>

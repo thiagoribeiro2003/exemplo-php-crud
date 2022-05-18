@@ -16,10 +16,10 @@ function lerFabricantes(PDO $conexao):array {
 
 // Inserir um fabricante
 function inserirFabricante(PDO $conexao, string $nome): void /*  void significa que não tem retorno*/ {
-    /* :qualquer_coisa: named parameters */
-    $sql = "INSERT INTO fabricantes(nome) VALUES('$nome')";
+    /* :qualquer_coisa: isso é um named parameter */
+    $sql = "INSERT INTO fabricantes(nome) VALUES(:nome)";
     try {
-     $consulta = $conexao-prepare($sql);
+     $consulta = $conexao->prepare($sql);
 
      /* bindParam('nome do parametro', $variavel_com_valor, constante de verificação) */
      $consulta->bindParam(':nome', $nome, PDO::PARAM_STR);
