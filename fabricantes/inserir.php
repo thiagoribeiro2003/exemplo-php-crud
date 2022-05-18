@@ -38,8 +38,6 @@ header("location:listar.php");
         </form>
     </div>
 
-    <p><a href="inserir.php">Voltar para lista de fabricantes</a></p>
-
         <p><a href="../index.php">Home</a></p>
 
 </body>
