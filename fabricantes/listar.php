@@ -15,6 +15,10 @@ $listaDeFabricantes = lerFabricantes($conexao);
         <h1>Fabricantes | SELECT</h1>
         <hr>
         <h2>Lendo e carregando todos os Fabricantes</h2>
+        
+        <p><a href="inserir.php">Voltar para lista de fabricantes</a></p>
+
+        <p><a href="../index.php">Home</a></p>
 
         <table>
             <caption>Lista de Fabricantes</caption>
