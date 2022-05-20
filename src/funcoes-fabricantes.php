@@ -48,12 +48,13 @@ function lerUmFabricante(PDO $conexao, int $id){
 }
 
 function atualizarFabricantes(PDO $conexao, int $id, string $nome):void{
-    $sql = "UPDATE fabricantes SET nome = /* :nome = parâmetro nomeado */ :nome WHERE id = :id;";
+    /* :nome = parâmetro nomeado */
+    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id;";
 
     try {
         $consulta = $conexao->prepare($sql);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
-        $consulta->bindParam(':nome', $id, PDO::PARAM_STR);
+        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR);
         $consulta->execute();
     } catch (Exception $erro) {
         die("Erro: ".$erro->getMessage());

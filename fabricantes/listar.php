@@ -20,6 +20,12 @@ $listaDeFabricantes = lerFabricantes($conexao);
 
         <p><a href="../index.php">Home</a></p>
 
+        <?php if (isset($_GET['status']) && $_GET['status'] == 'sucesso'){?>       
+        <p>Fabricante atualizado com sucesso!</p>
+        <?php }?>
+
+       
+
         <table>
             <caption>Lista de Fabricantes</caption>
             <thead>

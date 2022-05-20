@@ -4,8 +4,28 @@ require_once '../src/funcoes-fabricantes.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 $fabricante = lerUmFabricante($conexao, $id);
+
+if(isset($_POST['atualizar'])) {
+    $nome =  filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    atualizarFabricantes($conexao, $id, $nome);
+
+   // header("location:listar.php");
+
+  /* echo "<p>Fabricante atualizado com sucesso</p>";
+   header("Refresh:3; url=listar.php"); */
+
+   // Só com nome de parâmetro e valor
+   header("location:listar.php?status=sucesso");
+}
 ?>
 
+
+
+<!-- 
+    Apple
+    Positivo
+-->
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
