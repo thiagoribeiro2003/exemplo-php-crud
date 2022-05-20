@@ -12,7 +12,7 @@ $listaDeFabricantes = lerFabricantes($conexao);
 </head>
 <body>
     <div class="container">
-        <h1>Fabricantes | SELECT</h1>
+        <h1>Fabricantes | SELECT <a href="../index.php">(HOME)</a></h1>
         <hr>
         <h2>Lendo e carregando todos os Fabricantes</h2>
         
@@ -61,7 +61,9 @@ $listaDeFabricantes = lerFabricantes($conexao);
     <td> <?=$fabricante["id"] ?> </td>
     <td> <?=$fabricante["nome"]?> </td>
     <td> <a href="atualizar.php?id=<?=$fabricante["id"]?>">Atualizar</a> </td>
-    <td> <a href="">Excluir</a> </td>
+    
+    <td><a href="excluir.php?id=<?=$fabricante["id"]?>">Excluir</a></td>
+
 </tr>
 
  <?php 

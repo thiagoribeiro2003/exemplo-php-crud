@@ -36,7 +36,7 @@ if(isset($_POST['atualizar'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Fabricantes | SELECT/UPDATE</h1>
+        <h1>Fabricantes | SELECT/UPDATE <a href="../index.php">(HOME)</a></h1>
         <hr>
 
         <form action="" method="post">
