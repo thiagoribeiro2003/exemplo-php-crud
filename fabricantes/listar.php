@@ -16,7 +16,7 @@ $listaDeFabricantes = lerFabricantes($conexao);
         <hr>
         <h2>Lendo e carregando todos os Fabricantes</h2>
         
-        <p><a href="inserir.php">Voltar para lista de fabricantes</a></p>
+        <p><a href="inserir.php">Inserir novo fabricante</a></p>
 
         <p><a href="../index.php">Home</a></p>
 
@@ -62,16 +62,37 @@ $listaDeFabricantes = lerFabricantes($conexao);
     <td> <?=$fabricante["nome"]?> </td>
     <td> <a href="atualizar.php?id=<?=$fabricante["id"]?>">Atualizar</a> </td>
     
-    <td><a href="excluir.php?id=<?=$fabricante["id"]?>">Excluir</a></td>
+    <td>
+        <!-- 1°(forma improvisada) de deseja excluir -->
+   <!--  <a onclick="return confirm('Deseja realmente excluir?')" -->
+
+     <a class="excluir" href="excluir.php?id=<?=$fabricante["id"]?>">Excluir</a></td>
 
 </tr>
 
  <?php 
         }
-     ?>
-       
-    </tbody>
-    </table>
+  ?>      
+
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        // Acessando todos os links com a classe excluir
+        const links = document.querySelectorAll('.excluir');
+        for (let i = 0; i < links.length; i++) {
+            links[i].addEventListener("click",function(event){
+                event.preventDefault(); 
+                let resposta = confirm("Deseja realmente excluir?");
+                if(resposta) location.href = links[i].getAttribute('href');   
+            });
+            
+        }
+
+        
+
+
+    </script>
 </body>
 </html>
