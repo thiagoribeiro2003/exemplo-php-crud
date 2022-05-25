@@ -1,5 +1,9 @@
+<?php
+require_once "../src/funcoes-produtos.php";
+$listaDeProdutos = lerProdutos($conexao); dump($listaDeProdutos);
 
-
+?>
+<pre><?=var_dump($listaDeProdutos)?></pre>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
