@@ -1,9 +1,8 @@
 <?php
 require_once "../src/funcoes-produtos.php";
-$listaDeProdutos = lerProdutos($conexao); dump($listaDeProdutos);
-
+$listaDeProdutos = lerProdutos($conexao); //dump($listaDeProdutos);
 ?>
-<pre><?=var_dump($listaDeProdutos)?></pre>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,22 +17,39 @@ $listaDeProdutos = lerProdutos($conexao); dump($listaDeProdutos);
         <hr>
         <h2>Lendo e carregando todos os produtos</h2>
         <p><a href="inserir.php">Inserir um novo produto</a></p>
-        <div class="produtos">
 
+        <?php 
+            foreach ($listaDeProdutos as $produtos){        
+        ?>
+        
+        <div class="produtos">
             <article>
-                <h3>Nome do produto...</h3>
-                <p>Preço...</p>
-                <p>Quantidade...</p>
-                <p>Descrição...</p>
-                <p>Fabricante...</p>
+                <h3><?=$produtos["nome"]?></h3> <!-- Nome -->
+                <p><b>Preço:</b> R$<?=$produtos["preco"]?></p> <!-- Preço -->
+                <p><b>Qtd. em estoque:</b> <?=$produtos["quantidade"]?></p> <!-- Quantidade -->
+                <p><b>Descrição:</b> <?=$produtos["descricao"]?></p> <!-- Descrição -->
+                <p><b>fabricante:</b> <?=$produtos["fabricante"]?></p> <!-- Fabricante -->
+
+                <!-- Atualizar -->
+                <a href="atualizar.php?id=<?=$produtos["id"]?>">Atualizar</a>
+                <!-- Excluir -->
+               <a href="excluir.php?id="<?=$produtos["id"]?>>Excluir</a>
             </article>
         </div>
 
 
+
+
+
+
+
+        <?php 
+            }
+        ?>
+
+
+
         <p><a href="../index.php">Home</a></p>
-    </div>
-       
-        
-     
+    </div>    
 </body>
 </html>
