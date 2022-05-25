@@ -24,8 +24,8 @@ $listaDeProdutos = lerProdutos($conexao); //dump($listaDeProdutos);
         
         <div class="produtos">
             <article>
-                <h3><?=$produtos["nome"]?></h3> <!-- Nome -->
-                <p><b>Preço:</b> R$<?=$produtos["preco"]?></p> <!-- Preço -->
+                <h3><?=$produtos["produto"]?></h3> <!-- Nome -->
+                <p><b>Preço:</b> R$<?=number_format($produtos["preco"],2, ",", ".")?></p> <!-- Preço -->
                 <p><b>Qtd. em estoque:</b> <?=$produtos["quantidade"]?></p> <!-- Quantidade -->
                 <p><b>Descrição:</b> <?=$produtos["descricao"]?></p> <!-- Descrição -->
                 <p><b>fabricante:</b> <?=$produtos["fabricante"]?></p> <!-- Fabricante -->

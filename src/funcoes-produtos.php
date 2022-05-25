@@ -29,3 +29,7 @@ function dump($dados) {
     var_dump($dados);
     echo "</pre>";
 }
+
+function formataMoeda(float $valor):string {
+    return "R$ ".number_format($valor, 2, ",", ".");
+}
