@@ -1,5 +1,19 @@
 <?php
+require_once '../src/funcoes-fabricantes.php';
+$listaDeFabricantes = lerFabricantes($conexao);
 
+if(isset($_POST['inserir'])){
+    require_once '../src/funcoes-produtos.php';
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT);  
+    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);  
+    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);  
+    $fabricanteId = filter_input(INPUT_POST, 'fabricante', FILTER_SANITIZE_NUMBER_INT); 
+    
+    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $fabricanteId);
+
+    header("location:listar.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,18 +50,20 @@
                 <select required name="fabricante" id="fabricante">
                     <option value=""></option>
                     
-                    <?php ?>
+                    <?php foreach($listaDeFabricantes as $fabricante) {?>
 
-                    <option value="id"><?=$produtos["fabricante"]?></option>
+                    <option value="<?=$fabricante['id']?>"> <!-- O value id é para o banco-->
+                                <?=$fabricante['nome']?> <!--exibição -->
+                    </option> 
 
-                    <?php  ?>
+                    <?php } ?>
 
                     <!-- Opções de fabricantes existentes no BANCO -->
                 </select>
             </p>
             
             <p>
-                <label for="descricao">Descrição</label>
+               <p> <label for="descricao">Descrição</label> </p>
                 <textarea name="descricao" id="descricao" cols="30" rows="3"></textarea>
             </p>
 
@@ -56,8 +72,10 @@
             </button>
         </form>
     </div>
-    <p><a href="listar.php">Voltar para lista de produtos</a></p>
-        <p><a href="../index.php">Home</a></p>
 
+
+
+    <p><a href="listar.php">Voltar para lista de produtos</a></p>
+    <p><a href="../index.php">Home</a></p>
 </body>
 </html>
