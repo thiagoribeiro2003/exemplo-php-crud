@@ -10,6 +10,16 @@ $listaDeProdutos = lerProdutos($conexao); //dump($listaDeProdutos);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Lista</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .nome {
+            color: royalblue;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,7 +34,7 @@ $listaDeProdutos = lerProdutos($conexao); //dump($listaDeProdutos);
         
         <div class="produtos">
             <article>
-                <h3><?=$produtos["produto"]?></h3> <!-- Nome -->
+                <h2 class="nome"><?=$produtos["produto"]?></h3> <!-- Nome -->
                 <p><b>Preço:</b> R$<?=number_format($produtos["preco"],2, ",", ".")?></p> <!-- Preço -->
                 <p><b>Qtd. em estoque:</b> <?=$produtos["quantidade"]?></p> <!-- Quantidade -->
                 <p><b>Descrição:</b> <?=$produtos["descricao"]?></p> <!-- Descrição -->
