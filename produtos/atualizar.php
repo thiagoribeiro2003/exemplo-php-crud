@@ -61,13 +61,15 @@ if(isset($_POST['atualizar'])) {
                 <label for="fabricante">Fabricante:</label>
                 <select required name="fabricante" id="fabricante">
                 <?php foreach($listaDeFabricantes as $fabricante) {?>
-                    <option selected value="<?=$fabricante['id']?>"><?=$fabricante['nome']?></option>
-                    
-                    <?php } ?>
                     <!-- O value id é para o banco-->
-                    <option value="<?=$fabricante['id']?>"> 
+                    <option <?= if($fabricante['id'] == $fabricante['id']) { } ?> value="<?=$fabricante['id']?>"> 
                                    <?=$fabricante['nome']?> <!--exibição -->
                     </option> 
+
+                    <?php } 
+                    } 
+                    
+                    ?>
 
                    
 
