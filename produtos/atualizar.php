@@ -2,9 +2,14 @@
 require_once '../src/funcoes-fabricantes.php';
 require_once '../src/funcoes-produtos.php';
 $listaDeFabricantes = lerFabricantes($conexao);
+
+// Pegando o valor do id e sanitizando por segurança
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
+// Chamando a função e recebendo os dados do produto
 $produto = lerUmProduto($conexao, $id);
+
+dump($produto);
 
 if(isset($_POST['atualizar'])) {
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -55,10 +60,8 @@ if(isset($_POST['atualizar'])) {
             <p>
                 <label for="fabricante">Fabricante:</label>
                 <select required name="fabricante" id="fabricante">
-                <?php foreach($listaDeFabricantes as $fabricante) {
-                    $fabricanteId = $fabricante['id'];
-                    $fabricanteNome =  $fabricante['nome'];?>
-                    <option value="<?=$fabricante['id']?>"><?=$fabricante['nome']?></option>
+                <?php foreach($listaDeFabricantes as $fabricante) {?>
+                    <option selected value="<?=$fabricante['id']?>"><?=$fabricante['nome']?></option>
                     
                     <?php } ?>
                     <!-- O value id é para o banco-->
@@ -74,7 +77,7 @@ if(isset($_POST['atualizar'])) {
             
             <p>
                <p> <label for="descricao">Descrição:</label> </p>
-                <textarea value="<?=$produto['descricao']?>" name="descricao" id="descricao" cols="30" rows="3"></textarea>
+                <textarea name="descricao" id="descricao" cols="30" rows="3"><?=$produto['descricao']?></textarea>
             </p>
 
             <button type="submit" name="atualizar">
