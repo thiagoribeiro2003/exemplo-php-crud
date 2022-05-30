@@ -9,7 +9,7 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 // Chamando a função e recebendo os dados do produto
 $produto = lerUmProduto($conexao, $id);
 
-dump($produto);
+
 
 if(isset($_POST['atualizar'])) {
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -62,12 +62,15 @@ if(isset($_POST['atualizar'])) {
                 <select required name="fabricante" id="fabricante">
                 <?php foreach($listaDeFabricantes as $fabricante) {?>
                     <!-- O value id é para o banco-->
-                    <option <?= if($fabricante['id'] == $fabricante['id']) { } ?> value="<?=$fabricante['id']?>"> 
-                                   <?=$fabricante['nome']?> <!--exibição -->
+                    <option <?php 
+                    /* Se chave estrangeira for idêntica à chave primária (ou seja, se o código do fabricante do produto bater com ocódigo do fabricante), então coloque o atributo selected no option */
+                    if($produto['fabricante_id'] === $fabricante['id']) echo " selected "; ?> 
+                    value="<?=$fabricante['id']?>"> 
+                         <?=$fabricante['nome']?> <!--exibição -->
                     </option> 
 
                     <?php } 
-                    } 
+                    
                     
                     ?>
 
