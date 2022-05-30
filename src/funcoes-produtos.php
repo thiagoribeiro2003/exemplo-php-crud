@@ -66,22 +66,37 @@ function lerUmProduto(PDO $conexao, int $id):array{
 
 
 
-function atualizarProdutos(PDO $conexao, int $id, string $nome):void{
-    /* :nome = parâmetro nomeado */
-    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id;";
+
+
+
+function atualizarProduto(PDO $conexao, int $id, string $nome, float $preco, int $quantidade, string $descricao, int $fabricanteId):void{
+    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricante_id = :fabricanteId WHERE id = :id";
 
     try {
         $consulta = $conexao->prepare($sql);
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT); 
+        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR); 
+        $consulta->bindParam(':preco', $preco, PDO::PARAM_STR);
+        $consulta->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
+        $consulta->bindParam(':descricao', $descricao, PDO::PARAM_STR);
+        $consulta->bindParam(':fabricanteId', $fabricanteId, PDO::PARAM_INT);
+        $consulta->execute();      
+        
+    } catch (Exception $erro) {
+        die ("Erro: ". $erro->getMessage());
+    }
+}
+
+function excluirProduto (PDO $conexao, int $id):void{
+    $sql = "DELETE FROM produtos WHERE id = :id";
+    try {
+        $consulta = $conexao->prepare($sql);
         $consulta->bindParam(':id', $id, PDO::PARAM_INT);
-        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR);
         $consulta->execute();
     } catch (Exception $erro) {
         die("Erro: ".$erro->getMessage());
     }
 }
-
-
-
 
 
 

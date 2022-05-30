@@ -43,7 +43,7 @@ $listaDeProdutos = lerProdutos($conexao); //dump($listaDeProdutos);
                 <!-- Atualizar -->
                 <a href="atualizar.php?id=<?=$produtos["id"]?>">Atualizar</a>
                 <!-- Excluir -->
-               <a href="excluir.php?id="<?=$produtos["id"]?>>Excluir</a>
+               <a class="excluir" href="excluir.php?id=<?=$produtos["id"]?>">Excluir</a>
             </article>
         </div>
 
@@ -60,6 +60,8 @@ $listaDeProdutos = lerProdutos($conexao); //dump($listaDeProdutos);
 
 
         <p><a href="../index.php">Home</a></p>
+        
+        <script src="../js/confirm.js"></script>
     </div>    
 </body>
 </html>

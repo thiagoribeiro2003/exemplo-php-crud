@@ -11,15 +11,21 @@ $produto = lerUmProduto($conexao, $id);
 
 
 
-if(isset($_POST['atualizar'])) {
+
+if(isset($_POST['atualizar'])){
+    require_once '../src/funcoes-produtos.php';
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);  
+    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);  
+    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);  
+    $fabricanteId = filter_input(INPUT_POST, 'fabricante', FILTER_SANITIZE_NUMBER_INT); 
+    
+    atualizarProduto($conexao, $id, $nome, $preco, $quantidade, $descricao, $fabricanteId);
 
-    atualizarProdutos($conexao, $id, $nome);
-
-
-    header("location:listar.php?status=sucesso");
+    header("location:listar.php");
 }
 ?>
+
 
 
 <!DOCTYPE html>
