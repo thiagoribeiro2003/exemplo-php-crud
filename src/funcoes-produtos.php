@@ -60,6 +60,7 @@ function lerUmProduto(PDO $conexao, int $id):array{
         die("Erro: ".$erro->getMessage());
     }
 
+    
     return $resultado;
 }
 

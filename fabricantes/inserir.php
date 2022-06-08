@@ -4,7 +4,7 @@ if(isset($_POST['inserir']) ){
 /* Importando as funções e a conexão */ 
 require_once "../src/funcoes-fabricantes.php";
 
-/* Capturando o que foi digitado no camop nome */ 
+/* Capturando o que foi digitado no campo nome */ 
 $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
 
 /* Chamando a função e passando os dados de conexão e o nome digitado */
