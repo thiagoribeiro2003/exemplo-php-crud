@@ -17,7 +17,7 @@ try { /*try = testar*/
     );
 
     // Habilita a verificação de erros
-$conexao->setAttribute(
+    $conexao->setAttribute(
     PDO::ATTR_ERRMODE, // constante de erros em geral
     PDO::ERRMODE_EXCEPTION // constantes de exceções de erros
     );
