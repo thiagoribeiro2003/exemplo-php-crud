@@ -1,6 +1,6 @@
 <?php
 namespace CrudPoo;
-use PDO;
+use PDO, Exception;
 class Fabricante
 {
     private int $id;
@@ -15,6 +15,43 @@ class Fabricante
         da classe fabricante, automaticamente será feita a conexão com o banco. */ 
         $this->conexao = Banco::conecta();
     }
+
+
+    public function lerFabricantes():array {
+        $sql = "SELECT id, nome FROM fabricantes ORDER BY nome";
+        try {   
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->execute();
+        $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }
+        return $resultado;
+    }
+
+
+    public function inserirFabricante(): void {
+        $sql = "INSERT INTO fabricantes(nome) VALUES(:nome)";
+        try {
+         $consulta = $this->conexao->prepare($sql);
+         $consulta->bindParam(':nome', $this->nome, PDO::PARAM_STR);
+         $consulta->execute();
+        } catch (Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,6 +83,7 @@ class Fabricante
     
     public function setNome(string $nome)
     {
-        $this->nome = $nome;
+        //tem q ser filter var pois aq nao é um formulario sendo passado e sim o resultado 
+        $this->nome = filter_var($nome, FILTER_SANITIZE_SPECIAL_CHARS);
     }
 }

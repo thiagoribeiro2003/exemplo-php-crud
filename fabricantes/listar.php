@@ -1,5 +1,10 @@
-<?php require_once "../src/funcoes-fabricantes.php";
-$listaDeFabricantes = lerFabricantes($conexao);
+<?php
+use CrudPoo\Fabricante; // \ sao para classes do php, ja o namespace\ é para acessar as suas classes
+
+require_once "../vendor/autoload.php";
+
+$fabricante = new Fabricante;
+$listaDeFabricantes = $fabricante->lerFabricantes();
 ?>
 
 <!DOCTYPE html>
