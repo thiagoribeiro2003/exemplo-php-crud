@@ -4,7 +4,6 @@ namespace CrudPoo;
 /*Indicamos o uso das classes nativas do PHP (ou seja,
 Classes que não fazem parte do nosso namespace) */
 
-use CrudPoo\Banco as CrudPooBanco;
 use PDO, Exception;
 
 abstract class Banco 
@@ -24,8 +23,8 @@ private static PDO $conexao; // precisa do use PDO
 public static function conecta():PDO{
     try {
         self::$conexao = new PDO(
-            "mysql:host=".self::$servidor."
-            dbname=".self::$banco." 
+            "mysql:host=".self::$servidor.";
+            dbname=".self::$banco."; 
             charset=utf8",
             self::$usuario, //Self permite acessar recursos estáticos da própria classe
             self::$senha   //dentro da classe é o self::$variavel que da acesso  
@@ -34,7 +33,7 @@ public static function conecta():PDO{
         PDO::ATTR_ERRMODE, 
         PDO::ERRMODE_EXCEPTION 
         );
-        echo "ok";
+        //echo "ok";
     } catch (Exception $erro) {
         die("Deu ruim: ".$erro->getMessage());
     }
@@ -42,5 +41,6 @@ public static function conecta():PDO{
 }
 
 }
-Banco::conecta(); // teste
+//Banco::conecta();
+
 ?>
