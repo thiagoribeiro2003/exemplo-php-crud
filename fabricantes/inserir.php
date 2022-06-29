@@ -4,12 +4,9 @@ require_once "../vendor/autoload.php";
 
 if(isset($_POST['inserir']) ){
     $fabricante = new Fabricante;
-   
     // Usamos o setter para definir um nome do novo fabricante
     $fabricante->setNome($_POST['nome']);
-    
     $fabricante->inserirFabricante();
-
     header("location:listar.php");
 }
 ?>

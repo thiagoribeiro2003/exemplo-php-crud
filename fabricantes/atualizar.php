@@ -1,21 +1,17 @@
 <?php
-require_once '../src/funcoes-fabricantes.php';
-// Obtendo o valor do parâmetro da URL
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+use CrudPoo\Fabricante;
+require_once '../vendor/autoload.php';
+$fabricante = new Fabricante;
 
-$fabricante = lerUmFabricante($conexao, $id);
+$fabricante->setId( $_GET['id'] );
+
+$dadosFabricante = $fabricante->lerUmFabricante();
 
 if(isset($_POST['atualizar'])) {
-    $nome =  filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    $fabricante->setNome( $_POST['nome'] );
 
-    atualizarFabricantes($conexao, $id, $nome);
+   $fabricante->atualizarFabricantes();
 
-   // header("location:listar.php");
-
-  /* echo "<p>Fabricante atualizado com sucesso</p>";
-   header("Refresh:3; url=listar.php"); */
-
-   // Só com nome de parâmetro e valor
    header("location:listar.php?status=sucesso");
 }
 ?>
@@ -39,11 +35,11 @@ if(isset($_POST['atualizar'])) {
         <h1>Fabricantes | SELECT/UPDATE <a href="../index.php">(HOME)</a></h1>
         <hr>
 
-        <form action="" method="post">
+        <form action="" method="post" name="<?=$dadosFabricante['id']?>">
             <input type="hidden" name="">
             <p>
                 <label for="nome">Nome:</label>
-                <input value="<?=$fabricante['nome']?>" type="text" name="nome" id="nome">
+                <input value="<?=$dadosFabricante['nome']?>" type="text" name="nome" id="nome">
             </p>
 
             <button type="submit" name="atualizar">
