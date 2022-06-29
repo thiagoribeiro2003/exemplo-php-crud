@@ -77,17 +77,17 @@ final class Produto
 
 
     
-    public function atualizarProduto(PDO $conexao, int $id, string $nome, float $preco, int $quantidade, string $descricao, int $fabricanteId):void{
+    public function atualizarProduto():void{
     $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricante_id = :fabricanteId WHERE id = :id";
 
     try {
-        $consulta = $conexao->prepare($sql);
-        $consulta->bindParam(':id', $id, PDO::PARAM_INT); 
-        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR); 
-        $consulta->bindParam(':preco', $preco, PDO::PARAM_STR);
-        $consulta->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
-        $consulta->bindParam(':descricao', $descricao, PDO::PARAM_STR);
-        $consulta->bindParam(':fabricanteId', $fabricanteId, PDO::PARAM_INT);
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->bindParam(':id', $this->id, PDO::PARAM_INT); 
+        $consulta->bindParam(':nome', $this->nome, PDO::PARAM_STR); 
+        $consulta->bindParam(':preco', $this->preco, PDO::PARAM_STR);
+        $consulta->bindParam(':quantidade', $this->quantidade, PDO::PARAM_INT);
+        $consulta->bindParam(':descricao', $this->descricao, PDO::PARAM_STR);
+        $consulta->bindParam(':fabricanteId', $this->fabricanteId, PDO::PARAM_INT);
         $consulta->execute();      
         
     } catch (Exception $erro) {

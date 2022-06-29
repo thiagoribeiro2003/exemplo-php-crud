@@ -10,6 +10,7 @@ $produto = new Produto;
 $produto->setId($_GET['id']);
 
 $dadosProduto = $produto->lerUmProduto();
+$listaDeFabricantes = $fabricante->lerFabricantes();
 
 
 if(isset($_POST['atualizar'])){
@@ -19,7 +20,7 @@ if(isset($_POST['atualizar'])){
     $produto->setDescricao($_POST['descricao']);  
     $produto->setFabricanteId($_POST['fabricante']);
     
-    atualizarProduto($conexao, $id, $nome, $preco, $quantidade, $descricao, $fabricanteId);
+    $produto->atualizarProduto();
 
     header("location:listar.php");
 }
@@ -65,13 +66,13 @@ if(isset($_POST['atualizar'])){
             <p>
                 <label for="fabricante">Fabricante:</label>
                 <select required name="fabricante" id="fabricante">
-                <?php foreach($listaDeFabricantes as $fabricante) {?>
+                <?php foreach($listaDeFabricantes as $dadosFabricante) {?>
                     <!-- O value id é para o banco-->
                     <option <?php 
                     /* Se chave estrangeira for idêntica à chave primária (ou seja, se o código do fabricante do produto bater com ocódigo do fabricante), então coloque o atributo selected no option */
-                    if($dadosProduto['fabricante_id'] === $fabricante['id']) echo " selected "; ?> 
-                    value="<?=$fabricante['id']?>"> 
-                         <?=$fabricante['nome']?> <!--exibição -->
+                    if($dadosProduto['fabricante_id'] === $dadosFabricante['id']) echo " selected "; ?> 
+                    value="<?=$dadosFabricante['id']?>"> 
+                         <?=$dadosFabricante['nome']?> <!--exibição -->
                     </option> 
 
                     <?php } 
