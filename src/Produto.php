@@ -12,17 +12,103 @@ final class Produto
     private int $fabricanteId;
     private PDO $conexao;
 
+    public function __construct()
+    {
+        $this->conexao = Banco::conecta();
+    }
+
+
+    public function lerProdutos():array {
+        $sql = "SELECT produtos.id, 
+         produtos.nome AS produto,
+         produtos.descricao, 
+         produtos.preco,
+         produtos.quantidade, 
+         fabricantes.nome AS fabricante
+         FROM produtos INNER JOIN fabricantes 
+         ON produtos.fabricante_id = fabricantes.id 
+         ORDER BY produto";
+    
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch(Exception $erro){
+            die("Erro: ". $erro->getMessage());
+        }
+            return $resultado;
+    }
+
+
+
+        public function inserirProduto():void {
+            $sql = "INSERT INTO produtos(nome, preco, quantidade, descricao, fabricante_id) VALUES(:nome, :preco, :quantidade, :descricao, :fabricante_id)";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(':nome', $this->nome, PDO::PARAM_STR); 
+            $consulta->bindParam(':preco', $this->preco, PDO::PARAM_STR);
+            $consulta->bindParam(':quantidade', $this->quantidade, PDO::PARAM_INT);
+            $consulta->bindParam(':descricao', $this->descricao, PDO::PARAM_STR);
+            $consulta->bindParam(':fabricante_id', $this->fabricanteId, PDO::PARAM_INT);
+            $consulta->execute();      
+        } catch (Exception $erro) {
+            die ("Erro: ". $erro->getMessage());
+        }
+    }
+    
+
+
+    public function lerUmProduto():array{
+        $sql = "SELECT id, nome, preco, quantidade, descricao, fabricante_id FROM produtos WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $consulta-> execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        } catch(Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }
+
+        return $resultado;
+    }
+
+
+
+    
+    public function atualizarProduto(PDO $conexao, int $id, string $nome, float $preco, int $quantidade, string $descricao, int $fabricanteId):void{
+    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricante_id = :fabricanteId WHERE id = :id";
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT); 
+        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR); 
+        $consulta->bindParam(':preco', $preco, PDO::PARAM_STR);
+        $consulta->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
+        $consulta->bindParam(':descricao', $descricao, PDO::PARAM_STR);
+        $consulta->bindParam(':fabricanteId', $fabricanteId, PDO::PARAM_INT);
+        $consulta->execute();      
+        
+    } catch (Exception $erro) {
+        die ("Erro: ". $erro->getMessage());
+    }
+}
+
+
+
+
+
+
     
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(int $id)
     {
-        $this->id = $id;
-
-        return $this;
+        $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT); 
     }
 
   
@@ -32,66 +118,56 @@ final class Produto
         return $this->nome;
     }
   
-    public function setNome(string $nome): self
+    public function setNome(string $nome)
     {
-        $this->nome = $nome;
-
-        return $this;
+        $this->nome = filter_var($nome, FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
 
 
-    public function getPreco(): float
+    public function getPreco()
     {
         return $this->preco;
     }
 
-    public function setPreco(float $preco): self
+    public function setPreco(float $preco)
     {
-        $this->preco = $preco;
-
-        return $this;
+        $this->preco = filter_var($preco, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     }
 
 
   
-    public function getQuantidade(): int
+    public function getQuantidade()
     {
         return $this->quantidade;
     }
 
-    public function setQuantidade(int $quantidade): self
+    public function setQuantidade(int $quantidade)
     {
-        $this->quantidade = $quantidade;
-
-        return $this;
+        $this->quantidade = filter_var($quantidade, FILTER_SANITIZE_NUMBER_INT);
     }
 
     
 
-    public function getDescricao(): string
+    public function getDescricao()
     {
         return $this->descricao;
     }
 
-    public function setDescricao(string $descricao): self
+    public function setDescricao(string $descricao)
     {
-        $this->descricao = $descricao;
-
-        return $this;
+        $this->descricao = filter_var($descricao, FILTER_SANITIZE_SPECIAL_CHARS);
     }
 
 
     
-    public function getFabricanteId(): int
+    public function getFabricanteId()
     {
         return $this->fabricanteId;
     }
 
-    public function setFabricanteId(int $fabricanteId): self
+    public function setFabricanteId(int $fabricanteId)
     {
-        $this->fabricanteId = $fabricanteId;
-
-        return $this;
+        $this->fabricanteId = filter_var($fabricanteId, FILTER_SANITIZE_NUMBER_INT);
     }
 }
