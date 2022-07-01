@@ -1,8 +1,12 @@
 <?php
-use CrudPoo\Produto;
 require_once "../vendor/autoload.php";
+
+use CrudPoo\Produto;
+use CrudDiversos\Utilitarios;
+
 $produto = new Produto;
-$listaDeProdutos = $produto->lerProdutos(); //dump($listaDeProdutos);
+$listaDeProdutos = $produto->lerProdutos(); //dump($listaDeProdutos)
+Utilitarios::teste($listaDeProdutos);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +41,7 @@ $listaDeProdutos = $produto->lerProdutos(); //dump($listaDeProdutos);
         <div class="produtos">
             <article>
                 <h2 class="nome"><?=$produtos["produto"]?></h3> <!-- Nome -->
-                <p><b>Preço:</b> R$<?=number_format($produtos["preco"],2, ",", ".")?></p> <!-- Preço -->
+                <p><b>Preço:</b><?=Utilitarios::trataMoeda($produtos["preco"])?></p> <!-- Preço -->
                 <p><b>Qtd. em estoque:</b> <?=$produtos["quantidade"]?></p> <!-- Quantidade -->
                 <p><b>Descrição:</b> <?=$produtos["descricao"]?></p> <!-- Descrição -->
                 <p><b>fabricante:</b> <?=$produtos["fabricante"]?></p> <!-- Fabricante -->

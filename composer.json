@@ -1,7 +1,8 @@
 {
     "autoload" : {
         "psr-4" : {
-            "CrudPoo\\" : "src/"
+            "CrudPoo\\" : "src/", 
+            "CrudDiversos\\" : "Diversos/" 
         }
     }
 }

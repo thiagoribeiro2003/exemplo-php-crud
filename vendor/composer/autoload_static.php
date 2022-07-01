@@ -10,6 +10,7 @@ class ComposerStaticInit17e842aed3fd6867e6856c096bd287cf
         'C' => 
         array (
             'CrudPoo\\' => 8,
+            'CrudDiversos\\' => 13,
         ),
     );
 
@@ -17,6 +18,10 @@ class ComposerStaticInit17e842aed3fd6867e6856c096bd287cf
         'CrudPoo\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'CrudDiversos\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Diversos',
         ),
     );
 
