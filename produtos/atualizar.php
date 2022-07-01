@@ -9,10 +9,11 @@ $produto = new Produto;
 
 $listaDeFabricantes = $fabricante->lerFabricantes();
 
+// Pegando o valor do id e sanitizando
+$produto->setId($_GET['id']); // Primeiro pega o ID para depois chamar a função
+
 $dadosProduto = $produto->lerUmProduto(); // tem que guardar em uma variavel, pq se nao a variavel do objeto e essa vai ter o mesmo nome
 
-// Pegando o valor do id e sanitizando
-$produto->setId($_GET['id']);
 
 
 if(isset($_POST['atualizar'])){

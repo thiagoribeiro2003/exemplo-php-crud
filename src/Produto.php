@@ -18,6 +18,8 @@ final class Produto
     }
 
 
+
+    
     public function lerProdutos():array {
         $sql = "SELECT produtos.id, 
          produtos.nome AS produto,
@@ -41,6 +43,7 @@ final class Produto
 
 
 
+
         public function inserirProduto():void {
             $sql = "INSERT INTO produtos(nome, preco, quantidade, descricao, fabricante_id) VALUES(:nome, :preco, :quantidade, :descricao, :fabricante_id)";
 
@@ -56,6 +59,7 @@ final class Produto
             die ("Erro: ". $erro->getMessage());
         }
     }
+
     
 
 
