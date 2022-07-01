@@ -7,7 +7,6 @@ $produto = new Produto;
 $listaDeFabricantes = $fabricante->lerFabricantes();
 
 if(isset($_POST['inserir'])){
-    require_once '../src/funcoes-produtos.php';
     $produto->setNome($_POST['nome']);
     $produto->setPreco($_POST['preco']);
     $produto->setQuantidade($_POST['quantidade']);
