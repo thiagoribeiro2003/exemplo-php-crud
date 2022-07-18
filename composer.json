@@ -4,5 +4,8 @@
             "CrudPoo\\" : "src/", 
             "CrudDiversos\\" : "Diversos/" 
         }
+    },
+    "require": {
+        "dompdf/dompdf": "^2.0"
     }
 }

@@ -21,7 +21,21 @@ $listaDeFabricantes = $fabricante->lerFabricantes();
         <hr>
         <h2>Lendo e carregando todos os Fabricantes</h2>
         
-        <p><a href="inserir.php">Inserir novo fabricante</a></p>
+        <p>
+            <a href="inserir.php">Inserir novo fabricante</a>
+
+            |
+
+
+            <?php
+            if(isset($_GET['exportarPDF'])){
+                echo "Exportar....";
+            }
+
+            ?>
+            <!-- flag/sinalizador com parâmetro exportarPDF-->
+            <a href="?exportarPDF">Exportar para PDF</a>
+        </p>
 
         <p><a href="../index.php">Home</a></p>
 
