@@ -28,8 +28,17 @@ $listaDeFabricantes = $fabricante->lerFabricantes();
 
 
             <?php
+            // Verificando se o parâmetro existe
             if(isset($_GET['exportarPDF'])){
-                echo "Exportar....";
+
+                // Inicializando uma sessão PHP
+                session_start();
+
+                // Criando uma variável de sessão
+                $_SESSION["dados"] = $listaDeFabricantes;
+
+                // Redirecionando para o script de exportação
+                header("location:../exportar-pdf.php");
             }
 
             ?>
