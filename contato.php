@@ -1,3 +1,15 @@
+<?php
+//Importa classes PHPMailer para o namespace global
+//
+use PHPMailer \ PHPMailer \ PHPMailer ;
+use PHPMailer \ PHPMailer \ SMTP ;
+use PHPMailer \ PHPMailer \ Exception ; 
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
