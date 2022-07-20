@@ -1,17 +1,68 @@
 <?php
-//Importa classes PHPMailer para o namespace global
-//
-use PHPMailer \ PHPMailer \ PHPMailer ;
-use PHPMailer \ PHPMailer \ SMTP ;
-use PHPMailer \ PHPMailer \ Exception ; 
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
+if(isset($_POST['enviar'])){
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $assunto = $_POST['assunto'];
+    $mensagem = $_POST['mensagem'];
+
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer(true);
+    $mail->CharSet = "UTF-8";
+
+    try {
+        // Configurações do servidor de e-mail
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = 'fd19a4733332bc';
+        $mail->Password = '12f36e49f4953d';
+
+        //Quem envia
+        $mail->setFrom('contato@sitecrud.com', 'Site Crud');
+        
+        // Quem recebe
+        $mail->addAddress('fulano@sitecrud.com', 'Fulano');
 
 
+        // Para quem responder
+        $mail->addReplyTo($email, 'Retorno do contato');
+
+        //Content
+        $mail->isHTML(true);                                  
+        
+        //Set email format to HTML
+        $mail->Subject = "Contato Site - ".$assunto;
+        
+        // Corpo da mensagem em formato HTML
+        $mail->Body    = "<b>Nome:</b> $nome <br> 
+        <b>E-mail:</b> $email <br> <b>Assunto: $assunto</b> <br>
+        <b>Mensagem:</b> $mensagem";
+        
+        // Corpo da mensagem em formato texto puro
+        $mail->AltBody = "Nome: $nome \n E-mail: $email \n Assunto: $assunto \n Mensagem: $mensagem";
+
+        $mail->send();
+        echo 'Mensagem foi enviada com sucesso!';
+    } catch (Exception $e) {
+        echo "Ops! Deu ruim: {$mail->ErrorInfo}";
+    }
+} // final do if enviar
 ?>
 
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
