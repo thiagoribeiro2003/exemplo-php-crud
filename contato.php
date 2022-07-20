@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-        <form action="nome">Assunto</form>
+    <h1>Contato usando phpmailer</h1>
+    <hr>
+        <form action="" method="post">
         <select name="" id="">
         <p>
             <label for="assunto" id=" assunto" required></label>
