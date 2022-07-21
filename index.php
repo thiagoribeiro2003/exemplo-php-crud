@@ -18,7 +18,5 @@
             <li><a href="produtos/listar.php">Produtos</a></li>
         </ul>
     </div>
-
-    <h2>OLA</h2>
 </body>
 </html>
