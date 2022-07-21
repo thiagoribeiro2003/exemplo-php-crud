@@ -16,8 +16,9 @@
         <ul>
             <li><a href="fabricantes/listar.php">Fabricantes</a></li>
             <li><a href="produtos/listar.php">Produtos</a></li>
-            <li><a href="contato.php">contato</a></li>
         </ul>
     </div>
+
+    <h2>OLA</h2>
 </body>
 </html>
