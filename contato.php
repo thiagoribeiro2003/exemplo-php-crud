@@ -58,9 +58,6 @@ if(isset($_POST['enviar'])){
     }
 } // final do if enviar
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -72,22 +69,25 @@ if(isset($_POST['enviar'])){
 <body>
     <h1>Contato usando phpmailer</h1>
     <hr>
-        <form action="" method="post">
-        <select name="" id="">
-        <p>
-            <label for="assunto" id=" assunto" required></label>
-            <option value="duvidas">Dúvidas</option>
-            <option value="reclamações">reclamações</option>
-            <option value="value">Elogios</option>
-        </p>
-        </select>
-
-        <p>
-            <label for="email">E-mail:</label>
+    <form action="" method="post">
+       <p>
+            <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome" required>
-        </p>
+       </p>
 
-        <p><form action="Mensagem">Mensagem: </form></p>
-        <textarea name="mensagem"  rows="5"></textarea>
+       <p>
+            <label for="email">E-mail:</label>
+            <input type="text" name="email" id="email" required>
+       </p>
+
+       <p>
+            <label for="assunto">Assunto:</label>
+            <select name="assunto" id="assunto" required>
+                <option value=""></option>
+                <option>Dúvidas</option>
+                <option>Reclamações</option>
+                <option>Elogios</option>
+            </select>
+       </p>
 </body>
 </html>

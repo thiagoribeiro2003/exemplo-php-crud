@@ -19,6 +19,8 @@
         </ul>
     </div>
 
-    
+    <hr>
+
+    <p><a href="contato.php">Entre em contato conosco</a></p>
 </body>
 </html>
