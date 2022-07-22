@@ -89,5 +89,15 @@ if(isset($_POST['enviar'])){
                 <option>Elogios</option>
             </select>
        </p>
+
+       <p>
+            <label for="mensagem">Mensagem:</label>
+            <br>
+            <textarea name="mensagem" id="mensagem" cols="30" rows="5"></textarea>
+       </p>
+
+        <button type="submit" name="enviar">Enviar</button>
+
+        <p><a href="index.php">Voltar</a></p>
 </body>
 </html>
