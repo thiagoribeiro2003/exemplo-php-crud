@@ -6,7 +6,7 @@ use CrudDiversos\Utilitarios;
 
 $produto = new Produto;
 $listaDeProdutos = $produto->lerProdutos(); //dump($listaDeProdutos)
-Utilitarios::teste($listaDeProdutos);
+// Utilitarios::teste($listaDeProdutos);
 ?>
 
 <!DOCTYPE html>
