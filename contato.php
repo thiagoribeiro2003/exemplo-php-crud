@@ -18,14 +18,13 @@ if(isset($_POST['enviar'])){
     $mail = new PHPMailer(true);
     $mail->CharSet = "UTF-8";
 
-    try {
-        // Configurações do servidor de e-mail
-        $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
-        $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'fd19a4733332bc';
-        $mail->Password = '12f36e49f4953d';
+try {  
+    $mail->isSMTP();
+    $mail->Host = 'smtp.mailtrap.io';   
+    $mail->SMTPAuth = true;
+    $mail->Port = 2525;
+    $mail->Username = '5f869578238dda';
+    $mail->Password = 'f57a78e0277dc7';
 
         //Quem envia
         $mail->setFrom('contato@sitecrud.com', 'Site Crud');
