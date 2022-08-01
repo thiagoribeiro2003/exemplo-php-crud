@@ -22,6 +22,6 @@
         <p><a href="contato.php">Entre em contato conosco</a></p>
     </div>
 
-   <h1>testando</h1>
+   
 </body>
 </html>
